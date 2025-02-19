@@ -72,21 +72,27 @@ function fuelLevelWarning:onUpdate(dt)
 			if fuelLevelPercentage <= 5 then
 				if self.beepFuelActive == false then
 				  --print ("DEBUG: Activate 5sec BEEP - Permanent Loop")
-				  playSample(FuelBeepSound5 ,0,self.fuelwarnvolume ,1 ,0 ,0)
+					if self.currentFuelPercentage <= self.lastPercentageWarned then
+					  playSample(FuelBeepSound5 ,0,self.fuelwarnvolume ,1 ,0 ,0)
+					end
 				  self.lastPercentageWarned = math.floor(fuelLevelPercentage+0.5)
 				  self.beepFuelActive = true
 				end
 			elseif fuelLevelPercentage <= 15 then
 				if self.beepFuelActive == false then
 				  --print ("DEBUG: Activate 5sec BEEP - Play Twice")
-				  playSample(FuelBeepSound5 ,2,self.fuelwarnvolume ,1 ,0 ,0)
+					if self.currentFuelPercentage <= self.lastPercentageWarned then
+						playSample(FuelBeepSound5 ,2,self.fuelwarnvolume ,1 ,0 ,0)
+					end
 				  self.lastPercentageWarned = math.floor(fuelLevelPercentage+0.5)
 				  self.beepFuelActive = true
 				end
 			elseif fuelLevelPercentage <= 20 then
 				if self.beepFuelActive == false then
 				  --print ("DEBUG: Activate 5sec BEEP - Play Once")
-				  playSample(FuelBeepSound5 ,1,self.fuelwarnvolume ,1 ,0 ,0)
+					if self.currentFuelPercentage <= self.lastPercentageWarned then
+						playSample(FuelBeepSound5 ,1,self.fuelwarnvolume ,1 ,0 ,0)
+					end
 				  self.lastPercentageWarned = math.floor(fuelLevelPercentage+0.5)
 				  self.beepFuelActive = true
 				end
